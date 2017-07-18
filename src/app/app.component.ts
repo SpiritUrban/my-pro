@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent }   from './dashboard/dashboard.component';
 
 declare var jQuery: any;
 declare var THREE: any;
+
+export class Hero {
+  id: number;
+  name: string;
+}
 
 @Component({
   selector: 'app-root',
@@ -9,19 +16,24 @@ declare var THREE: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
-    
+  title = 'Tour of Heroes';
+  name = '43'
+  hero: Hero = {
+    id: 1,
+    name: 'Windstorm'
+  };
   constructor(
-  ) {}    
+  ) {}
 
-      public ngOnInit() {
+  public ngOnInit() {
     console.log('hello `Home` component');
+
     //console.log(THREE);
     //jQuery('body').css('color','red');
     /**
      * this.title.getData().subscribe(data => this.data = data);
      */
-    
+
       var mouseX = 0, mouseY = 0,
 
 			windowHalfX = window.innerWidth / 2,
@@ -170,5 +182,7 @@ export class AppComponent implements OnInit {
 
   }
 }
+
+
 
 
