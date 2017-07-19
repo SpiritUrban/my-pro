@@ -11,3 +11,18 @@ body {
 	font-family: 'Roboto', sans-serif;
 	line-height: 1.5em;
 }
+
+a {
+  display: inline-block;
+  padding: .5rem;
+  background: rgba(255, 255, 255, 0.31);
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  margin: .5rem 0 0 .5rem;
+
+}
+a:hover {
+  color: black;
+  background: white;
+}
