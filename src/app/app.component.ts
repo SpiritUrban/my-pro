@@ -4,10 +4,6 @@ import { AuthService }   from './services/auth.service';
 declare var jQuery: any;
 declare var THREE: any;
 
-export class Hero {
-  id: number;
-  name: string;
-}
 
 @Component({
   selector: 'app-root',
@@ -15,12 +11,7 @@ export class Hero {
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
-  title = 'Tour of Heroes';
-  name = '43'
-  hero: Hero = {
-    id: 1,
-    name: 'Windstorm'
-  };
+
   constructor(
     private AuthService: AuthService
   ) {
@@ -32,9 +23,7 @@ export class AppComponent implements OnInit {
 
     //console.log(THREE);
     //jQuery('body').css('color','red');
-    /**
-     * this.title.getData().subscribe(data => this.data = data);
-     */
+
 
       var mouseX = 0, mouseY = 0,
 

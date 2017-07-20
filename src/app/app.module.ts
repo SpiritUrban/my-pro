@@ -25,7 +25,8 @@ import { WindowRef }     from './services/window.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule
   ],
   providers: [
     AuthService,
