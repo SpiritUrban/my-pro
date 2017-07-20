@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { DashboardComponent }   from './dashboard/dashboard.component';
-
+import { AuthService }   from './services/auth.service';
 declare var jQuery: any;
 declare var THREE: any;
 
@@ -23,7 +22,10 @@ export class AppComponent implements OnInit {
     name: 'Windstorm'
   };
   constructor(
-  ) {}
+    private AuthService: AuthService
+  ) {
+    this.AuthService.setAuthHook();
+  }
 
   public ngOnInit() {
     console.log('hello `Home` component');

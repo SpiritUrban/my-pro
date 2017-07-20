@@ -10,6 +10,9 @@ import { HomeComponent }        from './home/home.component';
 import { LoginComponent }       from './login/login.component';
 import { DashboardComponent }   from './dashboard/dashboard.component';
 
+import { AuthService }   from './services/auth.service';
+import { WindowRef }     from './services/window.service';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { DashboardComponent }   from './dashboard/dashboard.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    WindowRef
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

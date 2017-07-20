@@ -18,6 +18,7 @@
 <script>
   function initAuth(authToken) {
     console.log(authToken)
+    window.authHook.next(authToken)
   }
 </script>
 
