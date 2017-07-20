@@ -1,0 +1,40 @@
+<div
+class="space-battle-container"
+(mouseenter)="onEvent($event)"
+(mouseleave)="onEvent($event)"
+(mousemove)="coordinates($event)"
+on-click="onEvent($event)"
+on-dblclick="onEvent($event)"
+on-contextmenu="onEvent($event)"
+>
+  space-battle
+
+
+  <div ></div>
+
+
+  <!-- Space ship-->
+  <img
+  class="space-ship"
+  [src]="angularclassLogo"
+  width="6%"
+  [ngStyle]="{left: ship_position}"
+
+  >
+
+<audio controls autoplay loop>
+  <!--<source src="assets/games/musics/AMemoryAway.ogg" type="audio/ogg"-->
+  <source src="assets/games/musics/Before_Humans__Official__Psycho_One.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<!--
+Musics
+http://www.tannerhelland.com/28/a-memory-away/
+http://www.tannerhelland.com/music-directory/
+
+sounds
+http://www.bigsoundbank.com/
+-->
+
+</div>

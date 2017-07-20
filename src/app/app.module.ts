@@ -16,7 +16,7 @@ import { HomeComponent }        from './home/home.component';
 import { LoginComponent }       from './login/login.component';
 import { DashboardComponent }   from './dashboard/dashboard.component';
 // Games
-import { SpaceBattleComponent }   from './games/space-battle.component';
+import { SpaceBattleComponent }   from './games/space-battle/space-battle.component';
 
 @NgModule({
   declarations: [
