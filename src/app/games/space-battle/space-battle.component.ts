@@ -14,19 +14,19 @@ export class SpaceBattleComponent implements OnInit {
   public angularclassLogo = 'assets/games/space-battle/space-ship.svg';
   public ship_position = '50%'
 
-  private event: MouseEvent;
-  private clientX = 0;
-  private clientY = 0;
+  public event: MouseEvent;
+  public clientX = 0;
+  public clientY = 0;
 
   // (mouseenter, mouseleave, on-click, on-dblclick, on-contextmenu) - events
-  private onEvent(event: MouseEvent): void {
+  public onEvent(event: MouseEvent): void {
     this.event = event;
     console.log(this.event)
     console.log(this.event.type)
   }
 
   // (mousemove) - event
-  private coordinates(event: MouseEvent): void {
+  public coordinates(event: MouseEvent): void {
     this.clientX = event.clientX;
     this.clientY = event.clientY;
     //console.log(this.clientY)

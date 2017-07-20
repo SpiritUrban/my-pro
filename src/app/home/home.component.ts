@@ -12,13 +12,13 @@ export class HomeComponent implements OnInit {
 
   public stres
 
-  private event: MouseEvent;
-  private clientX = 0;
-  private clientY = 0;
+  public event: MouseEvent;
+  public clientX = 0;
+  public clientY = 0;
 
-  private photo_event: MouseEvent;
-  private photo_clientX = 0;
-  private photo_clientY = 0;
+  public photo_event: MouseEvent;
+  public photo_clientX = 0;
+  public photo_clientY = 0;
 
   constructor() { }
 
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   //---------------------------------- GROUP -------------------------------------
 
   // (mouseenter, mouseleave, on-click, on-dblclick, on-contextmenu) - events
-  private onEvent(event: MouseEvent): void {
+  public onEvent(event: MouseEvent): void {
     this.event = event;
     console.log(this.event)
     console.log(this.event.type)
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   }
 
   // (mousemove) - event
-  private coordinates(event: MouseEvent): void {
+  public coordinates(event: MouseEvent): void {
     this.clientX = event.clientX;
     this.clientY = event.clientY;
     //console.log(this.clientY)
@@ -45,15 +45,21 @@ export class HomeComponent implements OnInit {
   //---------------------------------- GROUP -------------------------------------
 
   // (mouseenter, mouseleave, on-click, on-dblclick, on-contextmenu) - events
-  private photo_onEvent(event: MouseEvent): void {
+  public photo_onEvent(event: MouseEvent): void {
     this.photo_event = event;
-    console.log(this.photo_event)
-    console.log(this.photo_event.type)
+    //console.log(this.photo_event)
+    //console.log(this.photo_event.type)
 
     if (this.photo_event.type == 'mouseenter') this.stresFoo()
     else this.relaxFoo()
 
     //if (this.photo_event.type == 'mouseleave')
+  }
+
+  // (mousemove) - event
+  public photo_coordinates(event: MouseEvent): void {
+    this.photo_clientX = event.clientX;
+    this.photo_clientY = event.clientY;
   }
 
   private stresFoo(): void {
@@ -73,11 +79,7 @@ export class HomeComponent implements OnInit {
     this.photo_philter = 'invert(0%)'
   }
 
-  // (mousemove) - event
-  private photo_coordinates(event: MouseEvent): void {
-    this.photo_clientX = event.clientX;
-    this.photo_clientY = event.clientY;
-  }
+
 
   public ngOnInit() {
     console.log(1)
