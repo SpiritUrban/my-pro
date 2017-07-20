@@ -13,13 +13,11 @@ export class AuthService {
   constructor(
     private winRef: WindowRef
   ) {
-    //Window.dd = 1
     console.log('Native window obj', winRef.nativeWindow);
     winRef.nativeWindow.authHook = this.authHook;
   }
 
   setAuthHook() {
-
     this.authHook.subscribe(authToken => {
       console.log('authToken !!! ', authToken)
     })

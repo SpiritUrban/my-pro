@@ -11,6 +11,8 @@ import { LoginComponent }       from './login/login.component';
 import { DashboardComponent }   from './dashboard/dashboard.component';
 
 import { AuthService }   from './services/auth.service';
+import { UserService }   from './services/user.service';
+import { ApiService }   from './services/api.service';
 import { WindowRef }     from './services/window.service';
 
 
@@ -27,6 +29,8 @@ import { WindowRef }     from './services/window.service';
   ],
   providers: [
     AuthService,
+    UserService,
+    ApiService,
     WindowRef
   ],
   bootstrap: [AppComponent]
