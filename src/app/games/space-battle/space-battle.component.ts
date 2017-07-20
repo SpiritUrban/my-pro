@@ -11,7 +11,8 @@ import { Subject } from 'rxjs/Subject';
 
 export class SpaceBattleComponent implements OnInit {
 
-  public angularclassLogo = 'assets/games/space-battle/space-ship.svg';
+  public img_ship = 'assets/games/space-battle/space-ship.svg';
+  public img_roket = 'assets/games/space-battle/roket.png';
   public ship_position = '50%'
 
   public event: MouseEvent;

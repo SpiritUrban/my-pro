@@ -7,20 +7,24 @@ on-click="onEvent($event)"
 on-dblclick="onEvent($event)"
 on-contextmenu="onEvent($event)"
 >
-  space-battle
 
-
-  <div ></div>
-
-
-  <!-- Space ship-->
+  <!-- Space ship -->
   <img
   class="space-ship"
-  [src]="angularclassLogo"
+  [src]="img_ship"
   width="6%"
   [ngStyle]="{left: ship_position}"
-
   >
+
+  <!-- Fire -->
+  <img
+  class="shoot_roket"
+  [src]="img_roket"
+  width="2%"
+  [ngStyle]="{left: ship_position}"
+  *ngFor='let value of [1,2]'
+  >
+
 
 <audio controls autoplay loop>
   <!--<source src="assets/games/musics/AMemoryAway.ogg" type="audio/ogg"-->
@@ -28,13 +32,12 @@ on-contextmenu="onEvent($event)"
   Your browser does not support the audio element.
 </audio>
 
-<!--
-Musics
-http://www.tannerhelland.com/28/a-memory-away/
-http://www.tannerhelland.com/music-directory/
 
-sounds
-http://www.bigsoundbank.com/
--->
 
 </div>
+
+<!--
+
+  *ngFor='let value of values; trackBy: index;'
+
+-->
