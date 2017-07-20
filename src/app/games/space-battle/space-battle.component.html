@@ -19,10 +19,9 @@ on-contextmenu="onEvent($event)"
   <!-- Fire -->
   <img
   class="shoot_roket"
-  [title]=roket.number
   [src]="img_roket"
   width="2%"
-  [ngStyle]="{left: roket.start, bottom: run_fly(roket)}"
+  [ngStyle]="{left: roket.start, bottom: run_fly(roket) }"
   *ngFor='let roket of rokets_shoot'
   >
 
@@ -34,11 +33,11 @@ on-contextmenu="onEvent($event)"
 </audio>
 
 
-
 </div>
 
 <!--
 
   *ngFor='let value of values; trackBy: index;'
+  [title]=roket.number
 
 -->

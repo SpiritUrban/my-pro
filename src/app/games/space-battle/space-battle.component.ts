@@ -21,13 +21,29 @@ export class SpaceBattleComponent implements OnInit {
   public clientX = 0;
   public clientY = 0;
 
+  public audio = new Audio();
+
+
+    constructor(
+    //private winRef: WindowRef
+  ) {
+    //winRef.nativeWindow.onmousemove = this.onmousemove
+  }
+
   // (mouseenter, mouseleave, on-click, on-dblclick, on-contextmenu) - events
   public onEvent(event: MouseEvent): void {
     this.event = event;
     console.log(this.event)
     console.log(this.event.type)
 
+
+
     if (this.event.type == 'click') {
+      // Shot sound
+      this.audio.src = "assets/games/sounds/Explosion18.ogg";
+      this.audio.load();
+      this.audio.play();
+      //
       this.rokets_counter++
       this.rokets_shoot.push({
         number: this.rokets_counter,
@@ -47,22 +63,16 @@ export class SpaceBattleComponent implements OnInit {
   }
 
   public run_fly(roket) {
-    console.log(roket)
-    let numberStert = setInterval(() => {
+    setTimeout(() => {
+      console.log(roket)
       roket.bottom++
-      console.log(roket.bottom)
-    }, 1000)
-
-    if (roket.bottom > 100) clearInterval(numberStert)
+      if (roket.bottom > 50) this.rokets_shoot.pop()
+    }, 70)
     return roket.bottom + 'rem'
   }
 
 
-  constructor(
-    //private winRef: WindowRef
-  ) {
-    //winRef.nativeWindow.onmousemove = this.onmousemove
-  }
+
 
   public ngOnInit() {
     console.log('space-battle')
