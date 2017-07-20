@@ -14,6 +14,8 @@ export class SpaceBattleComponent implements OnInit {
   public img_ship = 'assets/games/space-battle/space-ship.svg';
   public img_roket = 'assets/games/space-battle/roket.png';
   public ship_position = '50%'
+  public rokets_shoot = []
+  public rokets_counter: number = 0
 
   public event: MouseEvent;
   public clientX = 0;
@@ -24,6 +26,16 @@ export class SpaceBattleComponent implements OnInit {
     this.event = event;
     console.log(this.event)
     console.log(this.event.type)
+
+    if (this.event.type == 'click') {
+      this.rokets_counter++
+      this.rokets_shoot.push({
+        number: this.rokets_counter,
+        start: this.ship_position,
+        bottom: 7
+      })
+      this.run_fly(this.rokets_counter)
+    }
   }
 
   // (mousemove) - event
@@ -34,6 +46,16 @@ export class SpaceBattleComponent implements OnInit {
     this.ship_position = event.clientX + 'px';
   }
 
+  public run_fly(roket) {
+    console.log(roket)
+    let numberStert = setInterval(() => {
+      roket.bottom++
+      console.log(roket.bottom)
+    }, 1000)
+
+    if (roket.bottom > 100) clearInterval(numberStert)
+    return roket.bottom + 'rem'
+  }
 
 
   constructor(

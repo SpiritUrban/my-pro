@@ -19,10 +19,11 @@ on-contextmenu="onEvent($event)"
   <!-- Fire -->
   <img
   class="shoot_roket"
+  [title]=roket.number
   [src]="img_roket"
   width="2%"
-  [ngStyle]="{left: ship_position}"
-  *ngFor='let value of [1,2]'
+  [ngStyle]="{left: roket.start, bottom: run_fly(roket)}"
+  *ngFor='let roket of rokets_shoot'
   >
 
 
