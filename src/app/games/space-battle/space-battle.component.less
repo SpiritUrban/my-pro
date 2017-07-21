@@ -9,6 +9,29 @@
   -webkit-user-select: none;
 }
 
+// Indications
+.panel {
+  text-align: right;
+  width: 100%;
+}
+// Player
+audio {
+  position: absolute;
+  left: 0;
+  opacity: .3;
+  &:hover {
+    opacity: .7;
+  }
+}
+.points {
+  //float: right;
+
+  font-size: 1.5rem;
+  margin: .5rem;
+}
+.spoil:extend(.points) {
+
+}
 
 // space-ship
 .space-ship {
@@ -17,13 +40,7 @@
   bottom: 5rem;
 }
 
-// Player
-audio {
-  opacity: .3;
-  &:hover {
-    opacity: .7;
-  }
-}
+
 
 // Gun
 .shoot_roket {

@@ -17,6 +17,8 @@ export class SpaceBattleComponent implements OnInit {
   public ship_position = '50%'
   public rokets_shoot = []
   public rokets_counter: number = 0
+  public points: number = 0
+  public spoil: number = 0
 
   public event: MouseEvent;
   public clientX = 0;
@@ -24,6 +26,8 @@ export class SpaceBattleComponent implements OnInit {
 
   public chimeras = []
   public chimeras_counter: number = 0
+
+  public clientWidth = document.body.clientWidth
 
 
   public audio = new Audio();
@@ -35,15 +39,24 @@ export class SpaceBattleComponent implements OnInit {
     //winRef.nativeWindow.onmousemove = this.onmousemove
   }
 
+    // (mousemove) - event
+  public coordinates(event: MouseEvent): void {
+    this.clientX = event.clientX;
+    this.clientY = event.clientY;
+    //console.log(this.clientY)
+    this.ship_position = event.clientX + 'px';
+  }
+
   // (mouseenter, mouseleave, on-click, on-dblclick, on-contextmenu) - events
   public onEvent(event: MouseEvent): void {
     this.event = event;
     console.log(this.event)
     console.log(this.event.type)
 
+    if (this.event.type == 'click') this.ship_shoot()
+  }
 
-
-    if (this.event.type == 'click') {
+  public ship_shoot() {
       // Shot sound
       this.audio.src = "assets/games/sounds/Explosion18.ogg";
       this.audio.load();
@@ -56,49 +69,55 @@ export class SpaceBattleComponent implements OnInit {
         bottom: 21
       })
       this.run_fly(this.rokets_counter)
-    }
+      //
+      // Change aim
+      //this.chimeras.pop()
+      console.log(this.spape_position_percent())
+
+
+      this.chimeras.map((chimera) => {
+          chimera.position.y = this.persent_to_number(chimera.position.y) - 1 + '%'
+
+          console.log(this.persent_to_number(chimera.position.x))
+
+          if (
+            ( this.spape_position_percent() < this.persent_to_number(chimera.position.x) + 3 ) &&
+            ( this.spape_position_percent() > this.persent_to_number(chimera.position.x) - 3 )
+          ) {
+            chimera.position.x = '50%'
+            chimera.position.y = '-30%'
+            this.points++
+          }
+
+      })
   }
 
-  // (mousemove) - event
-  public coordinates(event: MouseEvent): void {
-    this.clientX = event.clientX;
-    this.clientY = event.clientY;
-    //console.log(this.clientY)
-    this.ship_position = event.clientX + 'px';
-  }
 
   public run_fly(roket) {
     setTimeout(() => {
-      console.log(roket)
+      //console.log(roket)
       roket.bottom++
       if (roket.bottom > 100) this.rokets_shoot.pop()
     }, 70)
-    //return roket.bottom + 'rem'
     return roket.bottom + '%'
   }
-/*
-  public run_fly_chimera(chimera) {
-    setTimeout(() => {
-      console.log(chimera)
-      chimera.bottom++
-      if (chimera.bottom > 100) this.rokets_shoot.pop()
-    }, 70)
-    //return roket.bottom + 'rem'
-    return chimera.bottom + '%'
-  }*/
+
 
   public birth_of_a_chimera() {
     this.chimeras_counter++
     //
-    this.chimeras.push({
-        number: this.chimeras_counter,
-        name: 'Chimera-'+this.chimeras_counter,
-        position: { x: '50%', y: '-10%'},
-        top: 21
-    })
+    if (this.chimeras.length < 20) {
+      this.chimeras.push({
+          number: this.chimeras_counter,
+          name: 'Chimera-'+this.chimeras_counter,
+          position: { x: '50%', y: '-10%'},
+          top: 21
+      })
+    }
     console.log('birth_of_a_chimera')
     console.log(this.chimeras)
   }
+
 
   public chimera_cicle() {
     setInterval(() => {
@@ -108,9 +127,12 @@ export class SpaceBattleComponent implements OnInit {
     setInterval(() => {
       this.chimeras.map((chimera) => {
         chimera.position.x = this.persent_to_number(chimera.position.x) + this.random_pluss() + '%'
-        chimera.position.y = this.persent_to_number(chimera.position.y) + this.random_pluss() + '%'
+        chimera.position.y = this.persent_to_number(chimera.position.y) + this.random_pluss() + 5  + '%'
 
-        console.log(this.persent_to_number(chimera.position.y))
+        if (this.persent_to_number(chimera.position.y) > 120 ) {
+          chimera.position ={ x: '50%', y: '-100%'}
+          this.spoil++
+        }
       })
     }, 300)
   }
@@ -129,6 +151,10 @@ export class SpaceBattleComponent implements OnInit {
 
   private random_pluss(){
     return Math.random() * 2
+  }
+
+  private spape_position_percent () {
+    return Math.round(this.event.clientX /  (this.clientWidth / 100))
   }
 
 /*

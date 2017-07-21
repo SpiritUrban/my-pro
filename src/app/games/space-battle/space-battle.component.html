@@ -8,6 +8,18 @@ on-dblclick="onEvent($event)"
 on-contextmenu="onEvent($event)"
 >
 
+  <!-- Indications -->
+  <div class="panel">
+    <audio controls autoplay loop>
+      <!--<source src="assets/games/musics/AMemoryAway.ogg" type="audio/ogg"-->
+      <source src="assets/games/musics/Before_Humans__Official__Psycho_One.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <div class="points">Points: {{points}}</div>
+    <div class="spoil">Spoil: {{spoil}}</div>
+  </div>
+
+
   <!-- Space ship -->
   <img
   class="space-ship"
@@ -34,11 +46,7 @@ on-contextmenu="onEvent($event)"
   *ngFor='let chimera of chimeras'
   >
 
-<audio controls autoplay loop>
-  <!--<source src="assets/games/musics/AMemoryAway.ogg" type="audio/ogg"-->
-  <source src="assets/games/musics/Before_Humans__Official__Psycho_One.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+
 
 
 </div>
