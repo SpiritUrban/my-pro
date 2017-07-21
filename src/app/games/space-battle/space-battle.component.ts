@@ -93,7 +93,7 @@ export class SpaceBattleComponent implements OnInit {
     this.chimeras.push({
         number: this.chimeras_counter,
         name: 'Chimera-'+this.chimeras_counter,
-        position: { x: '50%', y: '10%'},
+        position: { x: '50%', y: '-10%'},
         top: 21
     })
     console.log('birth_of_a_chimera')
@@ -107,9 +107,12 @@ export class SpaceBattleComponent implements OnInit {
 
     setInterval(() => {
       this.chimeras.map((chimera) => {
-        chimera.position
+        chimera.position.x = this.persent_to_number(chimera.position.x) + this.random_pluss() + '%'
+        chimera.position.y = this.persent_to_number(chimera.position.y) + this.random_pluss() + '%'
+
+        console.log(this.persent_to_number(chimera.position.y))
       })
-    }, 500)
+    }, 300)
   }
 
 
@@ -118,11 +121,22 @@ export class SpaceBattleComponent implements OnInit {
     this.chimera_cicle()
   }
 
+  // Util
+  private persent_to_number(persent) {
+    persent = persent.slice(0, persent.length-1)
+    return  persent = parseInt(persent)
+  }
+
+  private random_pluss(){
+    return Math.random() * 2
+  }
+
+/*
   mouseMove(event) {
     event.preventDefault();
     console.log(event)
   }
-
+*/
   /*
     this.onmousemove = function (e) {
       cursorX = e.pageX;
