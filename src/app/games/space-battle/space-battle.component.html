@@ -25,6 +25,14 @@ on-contextmenu="onEvent($event)"
   *ngFor='let roket of rokets_shoot'
   >
 
+  <!-- Chimeras -->
+  <img
+  class="chimeras"
+  [src]="img_chimera"
+  width="8%"
+  [ngStyle]="{left: chimera.position.x, top: chimera.position.y }"
+  *ngFor='let chimera of chimeras'
+  >
 
 <audio controls autoplay loop>
   <!--<source src="assets/games/musics/AMemoryAway.ogg" type="audio/ogg"-->

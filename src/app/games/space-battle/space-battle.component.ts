@@ -13,6 +13,7 @@ export class SpaceBattleComponent implements OnInit {
 
   public img_ship = 'assets/games/space-battle/space-ship.svg';
   public img_roket = 'assets/games/space-battle/roket.png';
+  public img_chimera = 'assets/games/space-battle/chimera.png';
   public ship_position = '50%'
   public rokets_shoot = []
   public rokets_counter: number = 0
@@ -20,6 +21,10 @@ export class SpaceBattleComponent implements OnInit {
   public event: MouseEvent;
   public clientX = 0;
   public clientY = 0;
+
+  public chimeras = []
+  public chimeras_counter: number = 0
+
 
   public audio = new Audio();
 
@@ -48,7 +53,7 @@ export class SpaceBattleComponent implements OnInit {
       this.rokets_shoot.push({
         number: this.rokets_counter,
         start: this.ship_position,
-        bottom: 7
+        bottom: 21
       })
       this.run_fly(this.rokets_counter)
     }
@@ -66,16 +71,51 @@ export class SpaceBattleComponent implements OnInit {
     setTimeout(() => {
       console.log(roket)
       roket.bottom++
-      if (roket.bottom > 50) this.rokets_shoot.pop()
+      if (roket.bottom > 100) this.rokets_shoot.pop()
     }, 70)
-    return roket.bottom + 'rem'
+    //return roket.bottom + 'rem'
+    return roket.bottom + '%'
+  }
+/*
+  public run_fly_chimera(chimera) {
+    setTimeout(() => {
+      console.log(chimera)
+      chimera.bottom++
+      if (chimera.bottom > 100) this.rokets_shoot.pop()
+    }, 70)
+    //return roket.bottom + 'rem'
+    return chimera.bottom + '%'
+  }*/
+
+  public birth_of_a_chimera() {
+    this.chimeras_counter++
+    //
+    this.chimeras.push({
+        number: this.chimeras_counter,
+        name: 'Chimera-'+this.chimeras_counter,
+        position: { x: '50%', y: '10%'},
+        top: 21
+    })
+    console.log('birth_of_a_chimera')
+    console.log(this.chimeras)
   }
 
+  public chimera_cicle() {
+    setInterval(() => {
+      this.birth_of_a_chimera()
+    }, 5000)
 
+    setInterval(() => {
+      this.chimeras.map((chimera) => {
+        chimera.position
+      })
+    }, 500)
+  }
 
 
   public ngOnInit() {
     console.log('space-battle')
+    this.chimera_cicle()
   }
 
   mouseMove(event) {
