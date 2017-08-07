@@ -14,36 +14,36 @@ export class SpaceBattleComponent implements OnInit {
   public img_ship = 'assets/games/space-battle/space-ship.svg';
   public img_roket = 'assets/games/space-battle/roket.png';
   public img_chimera = 'assets/games/space-battle/chimera.png';
-  public ship_position = '50%'
-  public rokets_shoot = []
-  public rokets_counter: number = 0
-  public points: number = 0
-  public spoil: number = 0
+  public ship_position = '50%';
+  public rokets_shoot = [];
+  public rokets_counter: number = 0;
+  public points: number = 0;
+  public spoil: number = 0;
 
   public event: MouseEvent;
   public clientX = 0;
   public clientY = 0;
 
-  public chimeras = []
-  public chimeras_counter: number = 0
+  public chimeras = [];
+  public chimeras_counter: number = 0;
 
-  public clientWidth = document.body.clientWidth
+  public clientWidth = document.body.clientWidth;
 
 
   public audio = new Audio();
 
 
     constructor(
-    //private winRef: WindowRef
+    // private winRef: WindowRef
   ) {
-    //winRef.nativeWindow.onmousemove = this.onmousemove
+    // winRef.nativeWindow.onmousemove = this.onmousemove
   }
 
     // (mousemove) - event
   public coordinates(event: MouseEvent): void {
     this.clientX = event.clientX;
     this.clientY = event.clientY;
-    //console.log(this.clientY)
+    // console.log(this.clientY)
     this.ship_position = event.clientX + 'px';
   }
 
@@ -58,7 +58,7 @@ export class SpaceBattleComponent implements OnInit {
 
   public ship_shoot() {
       // Shot sound
-      this.audio.src = "assets/games/sounds/Explosion18.ogg";
+      this.audio.src = 'assets/games/sounds/Explosion18.ogg';
       this.audio.load();
       this.audio.play();
       //
@@ -84,8 +84,17 @@ export class SpaceBattleComponent implements OnInit {
             ( this.spape_position_percent() < this.persent_to_number(chimera.position.x) + 3 ) &&
             ( this.spape_position_percent() > this.persent_to_number(chimera.position.x) - 3 )
           ) {
-            chimera.position.x = '50%'
+            // chimera.position.x = '50%'
             chimera.position.y = '-30%'
+            chimera.position.x = this.random(30)+'%'
+            chimera.opacity = '0'
+            // chimera.display = 'none'
+            chimera.img = 'assets/games/space-battle/snot.png'
+            setTimeout(() => {
+              chimera.img = ''
+            }, 500)
+            chimera.width = '0%'
+            // chimera.position.x = (this.persent_to_number(chimera.position.x) - 30) + '%'
             this.points++
           }
 
@@ -95,8 +104,7 @@ export class SpaceBattleComponent implements OnInit {
 
   public run_fly(roket) {
     setTimeout(() => {
-      //console.log(roket)
-      roket.bottom++
+      if (roket.bottom) roket.bottom++
       if (roket.bottom > 100) this.rokets_shoot.pop()
     }, 70)
     return roket.bottom + '%'
@@ -106,11 +114,12 @@ export class SpaceBattleComponent implements OnInit {
   public birth_of_a_chimera() {
     this.chimeras_counter++
     //
-    if (this.chimeras.length < 20) {
+    if (this.chimeras.length < 10) {
       this.chimeras.push({
           number: this.chimeras_counter,
           name: 'Chimera-'+this.chimeras_counter,
-          position: { x: '50%', y: '-10%'},
+          position: { x: this.random(10)+'%', y: '-10%'},
+          width: '8%',
           top: 21
       })
     }
@@ -127,14 +136,32 @@ export class SpaceBattleComponent implements OnInit {
     setInterval(() => {
       this.chimeras.map((chimera) => {
         chimera.position.x = this.persent_to_number(chimera.position.x) + this.random_pluss() + '%'
-        chimera.position.y = this.persent_to_number(chimera.position.y) + this.random_pluss() + 5  + '%'
+        chimera.position.y = this.persent_to_number(chimera.position.y) + this.random_pluss() + 3  + '%'
+        chimera.opacity = '.7'
+        setTimeout(() => {
+          chimera.width = '8%'
+          //chimera.position.x = ( this.persent_to_number(chimera.position.x) + 10 ) + '%'
+          setTimeout(() => {
+            chimera.img = 'assets/games/space-battle/chimera.png'
+          }, 1000)
+        }, 1000);
+        
+        //chimera.display = 'block'
 
         if (this.persent_to_number(chimera.position.y) > 120 ) {
-          chimera.position ={ x: '50%', y: '-100%'}
+          chimera.position ={ x: this.random(10)+'%', y: '-100%'}
           this.spoil++
         }
+        if ( this.persent_to_number(chimera.position.x) < 5 ) chimera.position.x = '15%' // 
+        if ( this.persent_to_number(chimera.position.x) > 90 ) chimera.position.x = '80%' // 
+        //console.log(chimera.position.x)
+
       })
+
+
     }, 300)
+
+
   }
 
 
@@ -151,6 +178,10 @@ export class SpaceBattleComponent implements OnInit {
 
   private random_pluss(){
     return Math.random() * 2
+  }
+
+  private random(x){
+    return Math.random() * x
   }
 
   private spape_position_percent () {

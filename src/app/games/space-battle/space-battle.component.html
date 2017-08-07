@@ -40,9 +40,8 @@ on-contextmenu="onEvent($event)"
   <!-- Chimeras -->
   <img
   class="chimeras"
-  [src]="img_chimera"
-  width="8%"
-  [ngStyle]="{left: chimera.position.x, top: chimera.position.y }"
+  [src]="chimera.img"
+  [ngStyle]="{ left: chimera.position.x, top: chimera.position.y, opacity: chimera.opacity, display: chimera.display, width: chimera.width  }"
   *ngFor='let chimera of chimeras'
   >
 
