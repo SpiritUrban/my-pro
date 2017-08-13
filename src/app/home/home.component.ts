@@ -1,12 +1,51 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 
 
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
-  styleUrls: [ './home.component.less' ]
+  styleUrls: [ './home.component.less' ],
+  animations: [
+
+    trigger('listAnimation', [
+      transition('* => *', [
+
+        query(':enter', style({ opacity: 0 }), {optional: true}),
+
+        query(':enter', stagger('300ms', [
+          animate('1s ease-in', keyframes([
+            style({opacity: 0, transform: 'translateY(-75%)', offset: 0}),
+            style({opacity: .5, transform: 'translateY(35px)',  offset: 0.3}),
+            style({opacity: 1, transform: 'translateY(0)',     offset: 1.0}),
+          ]))]), {optional: true}),
+        query(':leave', stagger('300ms', [
+          animate('1s ease-in', keyframes([
+            style({opacity: 1, transform: 'translateY(0)', offset: 0}),
+            style({opacity: .5, transform: 'translateY(35px)',  offset: 0.3}),
+            style({opacity: 0, transform: 'translateY(-75%)',     offset: 1.0}),
+          ]))]), {optional: true})
+      ])
+    ]),
+
+    trigger('explainerAnim', [
+      transition('* => *', [
+        query('.an-1', style({ opacity: 0, transform: 'translateX(-40px)' })),
+
+        query('.an-1', stagger('500ms', [
+          animate('800ms 1.2s ease-out', style({ opacity: 1, transform: 'translateX(0)' })),
+        ])),
+
+        query('.an-1', [
+          animate(1000, style('*'))
+        ])
+        
+      ])
+    ])
+
+  ]  
 })
 
 @Injectable()
@@ -20,6 +59,7 @@ export class HomeComponent implements OnInit {
   }
 
   public myjsondata: Array<any>
+  public myjsondata_length: Number
 
   public photo_transform = 'rotate(0deg)'
   public photo_philter = 'invert(0%)'
@@ -99,6 +139,7 @@ export class HomeComponent implements OnInit {
   this.getData().subscribe((data) => {
     //console.log("what is in the data ", data)
     this.myjsondata = data
+    this.myjsondata_length = this.myjsondata.length
   })
 
   }

@@ -7,9 +7,16 @@ body {
 	margin: 0px;
   padding: 0px;
 	overflow: hidden;
-	color: white;
-	font-family: 'Roboto', sans-serif;
-	line-height: 1.5em;
+  color: white;
+  
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Monoton';font-size: 22px;
+  font-family: 'Audiowide';font-size: 22px;
+  font-family: 'Sarpanch';font-size: 22px;
+
+  line-height: 1.5em;
+  font-size: 20px;
+  font-weight: 300;
 }
 
 a {

@@ -29,15 +29,17 @@
             style="-webkit-filter: invert(100%); /* Safari */"
             >
 
-          <h2> I'm web-developer: Fullstack JavaScript, Web-Design, Web-3D </h2>
+          <h2 class="title"> I'm web-developer: Fullstack JavaScript, Web-Design, Web-3D </h2>
           <hr>
       </div>
 
       <h1> PERSONAL INFORMATION</h1>
-      <p>
-          Dyachuk Vitaliy<br>Khmelnitsky (Ukraine) <br><b>Sex &nbsp;</b>Male
-          | <b>Date of birth &nbsp;</b>03/06/1983 | <b>Nationality &nbsp;</b>Ukrainian
-      </p>
+
+      <div @explainerAnim>
+        <div class="an-1">Dyachuk Vitaliy</div>
+        <div class="an-1">Khmelnitsky (Ukraine)</div>
+        <div class="an-1"><b>Sex &nbsp;</b>Male | <b>Date of birth &nbsp;</b>03/06/1983 | <b>Nationality &nbsp;</b>Ukrainian</div>
+      </div>
 
       <h1> EDUCATION AND TRAINING </h1>
       <p>
@@ -46,16 +48,14 @@
       </p>
 
       <h1>WORK EXPERIENCE </h1>
-
-        <div class="unit" *ngFor='let unit of myjsondata'>
+      
+      
+      <div id="container" [@listAnimation]="myjsondata_length">
+        <div id="list" class="unit" *ngFor='let unit of myjsondata'>
           <b>{{unit.years}} </b>{{unit.title}}
           <span class="gray">...{{unit.company}}</span>
         </div>
-
-      <p>
-
-      </p>
-
+      </div>  
 
 
       <h1> PERSONAL SKILLS </h1>

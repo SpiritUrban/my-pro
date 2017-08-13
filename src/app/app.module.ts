@@ -4,6 +4,7 @@ import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AuthService }   from './services/auth.service';
 import { UserService }   from './services/user.service';
@@ -29,7 +30,8 @@ import { SpaceBattleComponent }   from './games/space-battle/space-battle.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,
