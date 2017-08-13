@@ -1,11 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
+
 
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: [ './home.component.less' ]
 })
+
+@Injectable()
 export class HomeComponent implements OnInit {
+
+  constructor( private http: Http ) { }
+  
+  private getData() {
+      return this.http.get('./assets/data/data.json')
+          .map((res:Response) => res.json()); //records in this case
+  }
+
+  public myjsondata: Array<any>
 
   public photo_transform = 'rotate(0deg)'
   public photo_philter = 'invert(0%)'
@@ -20,7 +34,6 @@ export class HomeComponent implements OnInit {
   public photo_clientX = 0;
   public photo_clientY = 0;
 
-  constructor() { }
 
 
   //---------------------------------- GROUP -------------------------------------
@@ -82,6 +95,15 @@ export class HomeComponent implements OnInit {
 
 
   public ngOnInit() {
-    console.log(1)
+    
+  this.getData().subscribe((data) => {
+    //console.log("what is in the data ", data)
+    this.myjsondata = data
+  })
+
   }
+
 }
+
+
+
