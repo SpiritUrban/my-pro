@@ -1,6 +1,6 @@
 <audio autoplay loop>
   <!--<source src="assets/games/musics/AMemoryAway.ogg" type="audio/ogg"-->
-  <source src="assets/games/musics/Before_Humans__Official__Psycho_One.mp3" type="audio/mpeg">
+  <source src="assets/games/musics/Arrient_X_ArtJumper---Lost_Souls.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
@@ -16,7 +16,7 @@
     <div class="sheet">
 
       <div class="head">
-          <img
+          <!--img
             src="../assets/img/I.png"
             (mouseenter)="photo_onEvent($event)"
             (mouseleave)="photo_onEvent($event)"
@@ -24,7 +24,14 @@
             on-click="photo_onEvent($event)"
             on-dblclick="photo_onEvent($event)"
             on-contextmenu="photo_onEvent($event)"
-
+            [ngStyle]="{ 'transform': photo_transform, 'filter': photo_philter  }"
+            style="-webkit-filter: invert(100%); /* Safari */"
+          -->
+            <img
+            src="../assets/img/I.png"
+            on-click="photo_onEvent($event)"
+            on-dblclick="photo_onEvent($event)"
+            on-contextmenu="photo_onEvent($event)"
             [ngStyle]="{ 'transform': photo_transform, 'filter': photo_philter  }"
             style="-webkit-filter: invert(100%); /* Safari */"
             >
@@ -48,14 +55,14 @@
       </p>
 
       <h1>WORK EXPERIENCE </h1>
-      
-      
+
+
       <div id="container" [@listAnimation]="myjsondata_length">
         <div id="list" class="unit" *ngFor='let unit of myjsondata'>
           <b>{{unit.years}} </b>{{unit.title}}
           <span class="gray">...{{unit.company}}</span>
         </div>
-      </div>  
+      </div>
 
 
       <h1> PERSONAL SKILLS </h1>
