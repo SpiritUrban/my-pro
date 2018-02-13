@@ -137,7 +137,6 @@ export class HomeComponent implements OnInit {
   public ngOnInit() {
     
   this.getData().subscribe((data) => {
-    //console.log("what is in the data ", data)
     this.myjsondata = data
     this.myjsondata_length = this.myjsondata.length
   })
